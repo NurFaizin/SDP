@@ -35,10 +35,10 @@ make && sudo make altinstall
 # Download ez_setup
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 
-# Install easy_install
+# Installing easy_install
 python2.6 ez_setup.py
 python3.3 ez_setup.py
 
-# Install pip
+# Installing pip
 sudo easy_install-2.6 pip
 sudo easy_install-3.3 pip
