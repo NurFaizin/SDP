@@ -22,8 +22,10 @@ wget -nc http://bugs.python.org/file26938/py26-fix.diff
 patch -p1 < py26-fix.diff
 
 # Patching bugs zlib modules on python2.6.8 > Ubuntu 12.04
-sudo ln -s /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so
-
+if [! -a /lib/x86_64-linux-gnu/libz.so]
+    then 
+	sudo ln -s /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so
+fi
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
 make && sudo make altinstall
 
