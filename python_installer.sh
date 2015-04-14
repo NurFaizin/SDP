@@ -6,7 +6,7 @@
 # Date		: 04/14/2014
 
 # Installing dependencies
-sudo apt-get install zlib1g-dev openssl libssl-dev
+sudo apt-get update && sudo apt-get install zlib1g-dev openssl libssl-dev
 
 # Python 2.6.8
 wget http://python.org/ftp/python/2.6.8/Python-2.6.8.tar.xz
