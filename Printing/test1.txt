@@ -1,0 +1,106 @@
+# Jawaban No. 1
+x = "Hello"
+
+print x
+
+# Jawaban No. 2
+x = 9
+y = 7
+z = x + y
+
+print z
+
+# Jawaban No. 3
+first_name = "Rahmat"
+last_name = "Faizin"
+call_name = "Faiz"
+
+print "%s %s %s" % (first_name, call_name, last_name)
+
+# Jawaban No.4
+Potongan script tersebut adalah untuk mencetak hasil operasi aritmatika dari 
+bilangan 4 + 9
+
+# Jawaban No.5
+Potongan script tersebut adalah untuk mencetak string "4 + 9", dibaca sebagai
+string karena menggunakan double-quotes
+
+# Jawaban No.6
+Operasi aritmatika pada python sudah mampu mengenali aturan pendahuluan operasi
+kali, bagi, tambah dan kurang, sehingga tanpa menggunakan kurung di perkalian 
+python telah mendahulukan operasi perkalian sebelum penjumlahan
+
+# Jawaban No.7
+1 -> integer
+1. -> float
+1.0 -> float
+"1" -> string
+"1." -> string
+"1.0" -> string
+'1' -> string
+'1.' -> string
+100000000000000000 -> integer
+100000000000000000. -> float
+100000000000000000.0 -> float
+a=3 -> variable of integer
+b='1' -> variable of string
+c=a-2 -> variable of integer
+d=a-c -> variable of integer
+e="dog" -> variable of string
+f=',went to mow a meadow.' -> variable of string
+g='man' -> variable of string
+
+# Jawabab No.8
+print 12 -> akan mencetak integer
+print "12" -> akan mencetak string
+
+# Jawaban No.9
+Expression "Python" dan 'Python' tidak memiliki perbedaan, single-quote maupun
+double-quote dalam python akan sama-sama dikenali sebagai string
+
+# Jawaban No.10
+Keluaran dari 4+4/2+2 adalah 8
+
+# Jawaban No.11
+Setelah menjalankan perintah swap a dan b sama-sama bernilai 20
+
+# Jawaban No.12
+Pilihan perintah print yang benar adalah A, C, D dan E
+
+# Jawaban No.13
+Pilihan operasi aritmatika yang benar adalah A dan D
+
+# Jawaban No.14
+Pilihan penamaan variable yang benar adalah A, C dan D
+
+# Jawaban No.15
+Pilihan jenis konversi yang benar adalah A, B dan C
+
+# Jawaban No.16
+Pilihan yang hasilnya 8 adalah A dan B
+
+# Jawaban No.17
+Pilihan yang di-comment adalah A, B dan D
+
+# Jawaban No.18
+quote = "Talk is cheap, show me the code"
+
+print "Linux Torvalds said, %r" % quote
+
+# Jawaban No.19
+1023 -> int
+None -> NoneType
+[2, 4, 8, 16] -> list
+True -> boolean
+17.54 -> float
+('Roger', 1952) -> tuple
+"my fat cat" -> str
+{'name':'Roger', 'birth':1952} -> dict
+
+# Jawaban No.20
+"R.%s"%("GB") -> R.GB
+"%2i. %4s"%(3, "RGB") -> 3.    RGB
+"%5.2f"%3.1415 -> 3.14
+'%s\t%s\tRG'%('B','\t') -> B        RG
+"%5i"%(3.1415) ->   3
+"RG%4iB"%(7) -> RG  7B
