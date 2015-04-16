@@ -1,0 +1,25 @@
+# Jawaban No.1
+nama_depan = raw_input("Ketikkan nama depan anda\t: ")
+nama_belakang = raw_input("Ketikkan nama belakang anda\t: ")
+
+print "Halo %5s %5s" % (nama_belakang, nama_depan)
+
+# Jawaban No.2
+fahrenheit = float(raw_input("Ketikkan nilai temperatur dalam fahrenheit: "))
+celcius = (fahrenheit - 32) * 5 / 9
+
+print "Temperatur %.2f fahrenheit = %.2f celcius" % (fahrenheit, celcius)
+
+# Jawaban No.3
+filename = raw_input("Ketikkan nama file: ")
+ext = filename[filename.rfind('.'):]
+
+print "Extension from file %s is %r" % (filename, ext)
+
+# Jawaban No.4
+import os
+
+path = raw_input("Ketikkan lokasi directory yang akan di list: ")
+files = os.listdir(path) # Get files list on given path
+
+print files
