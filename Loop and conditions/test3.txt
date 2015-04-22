@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+def c_to_f(temp):
+    """Function to convert celcius to fahrenheit"""
+    f = (9.0 / 5.0) * temp + 32
+    return f
+
+
+def f_to_c(temp):
+    """Function to convert fahrenheit to celcius"""
+    c = (5.0 / 9.0) * (temp - 32)
+    return c
+
+temp = float(raw_input("Suhunya berapa? "))
+choice = raw_input("Mau dikonversi ke Celcius/Fahrenheit? (C/F) ")
+
+if choice == "F" or choice == "f":
+    temp_converted = c_to_f(temp)
+    print "Suhu {0} celcius = {1} fahrenheit".format(temp, temp_converted)
+
+elif choice == "C" or choice == "c":
+    temp_converted = f_to_c(temp)
+    print "Suhu {0} fahrenheit = {1} celcius".format(temp, temp_converted)
+
+else:
+    print "Pilihan anda tidak tersedia!"
