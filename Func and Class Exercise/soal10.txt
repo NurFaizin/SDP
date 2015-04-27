@@ -1,0 +1,147 @@
+# Pertanyaan 1
+
+Buat sebuah program yang akan menemukan semua nomor yang habis dibagi 7 tapi bukan kelipatan 5, antara 2000 dan 3200 (keduanya termasuk).
+
+Angka-angka yang diperoleh harus ditampilkan (print) dalam urutan yang dipisah oleh karakter koma dalam satu baris.
+
+Petunjuk:
+- Gunakan function
+- Bisa menggunakan method range(#awal, #akhir)
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+
+# Pertanyaan 2
+Buat sebuah program yang dapat menghitung faktorial dari angka yang diberikan.
+
+Hasilnya harus dicetak dalam urutan, dipisahkan dengan koma pada satu baris.
+
+Misalkan angka yang diberikan adalah:
+8
+
+Hasilnya adalah:
+40320
+
+Petunjuk:
+- Gunakan function
+- Faktorial => n! = n(n-1)!
+- Contoh 7! bernilai 7×6×5×4×3×2×1 = 5040
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+
+# Pertanyaan 3
+Dengan angka yang dimasukkan oleh pengguna, buatlah program untuk menghasil dictionary yang berisikan (i, i*i). Kemudian data dictionary tadi ditampilkan.
+
+Misalkan angka yang dimasukkan oleh pengguna:
+8
+
+Maka keluarannya adalah:
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64}
+
+Petunjuka:
+- Gunakan dict()
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+
+# Pertanyaan 4
+Buat sebuah program yang menanyakan kepada pengguna deretan angka yang dipisahkan oleh koma dan hasilkan sebuah list dan sebuah tuple yang berisi setiap angka tadi.
+
+Misalkan pengguna mengisi:
+34,67,55,33,12,98
+
+Maka keluarannya adalah sebagai berikut
+## List
+['34', '67', '55', '33', '12', '98']
+
+## Tuple
+('34', '67', '55', '33', '12', '98')
+
+Petunjuk:
+- Gunakan method ```tuple()``` untuk mmeng-konversi list ke tuple.
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+
+# Pertanyaan 5
+Buat sebuah class yang memiliki 2 method:
+- getString: untuk mengambil sebuah string.
+- printString: untuk mencetak string yang diambil tadi dengan upper case.
+
+Petunjuk:
+- Gunakan method __init__ sebagai construct beberapa parameter
+
+
+#Pertanyaan 6
+Buat sebuah program yang menghitung dan menampilkan hasil perhitungan tersebut berdasarkan formula berikut:
+Q = Square root of [(2 * C * D)/H]
+
+Berikut adalah fixed variable (variabel yang sudah dideklrasaikan pada baris kode) C dan H:
+C = 50
+H = 30
+
+D adalah variabel yang nilainya didapatkan dari input-an pengguna dalam format yang dipisahkan dengan koma.
+Contoh:
+100,150,180
+
+Hasil keluaran dari program adalah:
+18,22,24
+
+Petunjuk:
+Jika hasil keluaran dalam bentuk desimal, maka perlu dibulatkan.
+
+Petunjuk:
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+# Pertanyaan 7
+Buat sebuah program yang yang memproses 2 angka yang di-input oleh pengguna dan menghasilkan array 2 dimensi. Nilai elemen di dalam baris i-th dan kolom j-th harus i*j.
+Catatan: i=0,1.., X-1; j=0,1,Y-1.
+
+Contoh, yang diinput oleh pengguna adalah:
+3,5
+
+Kemudian, keluaran dari program adalah sebagai berikut:
+[[0, 0, 0, 0, 0], [0, 1, 2, 3, 4], [0, 2, 4, 6, 8]]
+
+Petunjuk:
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+# Pertanyaan 8
+Buat sebuah program yang menerima sejumlah kata dipisahkan dengan koma dari pengguna dan tampilkan kata-kata tersebut diurutkan secara alfabet dan dipisahkan dengan koma.
+
+Misalkan, kata yang diinput oleh pengguna:
+once,document,report,lengthy
+
+Then, the output should be:
+document,lengthy,once,report
+
+Petunjuk:
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+
+# Pertanyaan 9
+Buat sebuah program yang menerima sejumlah kalimat lebih dari satu baris dari pengguna dan tampilkan kalimat tersebut dengan huruf besar pada semua kalimat.
+
+Misalkan pengguna memasukan:
+Halo Indonesia,
+Practice makes perfect
+
+Hasil keluaran program adalah sebagai berikut:
+HELLO WORLD
+PRACTICE MAKES PERFECT
+
+Petunjuk:
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
+- Gunakan list
+- Gunakan While
+- Gunakan append
+- Gunakan for-loop
+
+
+# Pertanyaan 10
+Buat sebuah program yang menerima rangkaian kalimat dari pengguna dan tampilkan kalimat-kalimat tersebut setelah menghapus semua kata yang duplikat kemudian urutkan sesuai dengan alfabet.
+
+Misalkan masukan dari pengguna:
+hello world and practice makes perfect and hello world again
+
+Keluarannya adalah sebagai berikut:
+again and hello makes perfect practice world
+
+Petunjuk:
+- Gunakan method raw_input() untuk menerima masukan dari pengguna
