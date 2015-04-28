@@ -64,6 +64,8 @@ def print_top(filename):
     print "%s %s" % (word[0], word[1])
 
 
+
+# Helper function to get the word frequency appearance
 def word_freq(filename):
 
   txt = open(filename)    

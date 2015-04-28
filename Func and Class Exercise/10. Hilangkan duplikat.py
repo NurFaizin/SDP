@@ -5,6 +5,8 @@ print "Masukkan sebuah kalimat: "
 
 kalimat = raw_input("> ").split()
 
+# Remove duplicate elements
 kalimat_unik = list(set(kalimat))
 
-print " ".join(sorted(kalimat_unik))
+# Print separated by space
+print (" ").join(sorted(kalimat_unik))
