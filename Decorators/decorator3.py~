@@ -17,6 +17,5 @@ def foo2():
     return 2
 
 foo1(5, 4)
-foo1(x=5, y=4)
 foo1(1)
 foo2()
