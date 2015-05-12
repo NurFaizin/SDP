@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Flask routes examples</h3>
+      </div>
+      <hr/>
+      <div>
+        Kindly observe the URL of each link before clicking it. Also check
+        the route and URL for the corresponding URL from the app.py code to
+        understand how the routes work.
+        <ul>
+          <li><a href="/">Home page</a></li>
+          <li>
+            Same view handling different routes - 
+            <a href='/route1/'>Route 1</a>
+            <a href='/route2/'>Route 2</a>
+            <a href='/lengthy/route3/'>Route 3</a>
+          </li>
+          <li>
+            URLs for route with trailing slash - 
+            <a href='/slash/'>With slash</a>,
+            <a href='/slash'>Same URL without slash</a>
+            URLs for route without trailing slash -
+            <a href='/no-slash'>Without slash</a>.
+            This URL <a href='/no-slash/'>with slash</a> will not work.
+          </li>
+          <li>
+            This view captures messages from the variable part of the URL - 
+            <a href='/message/message1/'>Message 1</a>,
+            <a href='/message/hello/'>Message 2</a>
+          </li>
+          <li>
+            This view captures a variable from the URL and converts it to int
+            <a href="/users/1/">User 1</a>
+            This URL will not work as the variable cannot be converted to int
+            <a href="/users/guru/">Guru</a>
+          </li>
+          <li>
+            This view will handle only GET requests for this URL
+            <a href="/method/get/">GET method only</a>
+          </li>
+          <li>
+            This takes an integer page number in this URL
+            <a href="/page/10/">Page 10</a>, but also
+            has a default value of 1 for the page number if it is not specified
+            in the URL.
+            <a href="/page/">Page 1</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
