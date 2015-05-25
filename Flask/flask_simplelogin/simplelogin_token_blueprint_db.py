@@ -129,26 +129,25 @@ def generate_token():
 @login_manager.request_loader
 def load_user(request):
 
-    if request.method == "GET":
-        username_or_token = request.args.get('username')
-        password = request.args.get('password')
-    else:
-        username_or_token = request.form['username']
-        password = request.form['password']
+    access_token = request.args.get('access_token') \
+                    or request.form.get('access_token')
+    username = request.form.get('username')
+    password = request.form.get('password')
 
-    if username_or_token and password:
-        user = verify_auth_token(username_or_token)
-        if not user:
-            user_entry = User.get(username_or_token)
-            if (user_entry is not None):
-                user = User(user_entry[0], user_entry[1], user_entry[2])
-                if (user.password != password):
-                    return None
+    user = verify_auth_token(access_token)
 
-        g.user = user
-        return user
+    if not user:
+        user_entry = User.get(username)
 
-    return None
+        if (user_entry is not None):
+            user = User(user_entry[0], user_entry[1], 
+                    user_entry[2])
+
+            if user.password != password:
+                return None
+    
+    g.user = user
+    return user
 
 
 @app.route("/", methods=["GET"])
