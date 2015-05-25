@@ -14,8 +14,8 @@ from itsdangerous import (
     SignatureExpired
 )
 import error_handlers
-import MySQLdb
-import MySQLdb.cursors
+from connection import db_connect
+
 
 app = Flask(__name__)
 login_manager = LoginManager()
@@ -31,9 +31,7 @@ class User(UserMixin):
 
     @classmethod
     def get(cls, username):
-        db = MySQLdb.connect(host='localhost', port=3306, 
-                            user='root', passwd='toor', db='test')
-        cursor = db.cursor()
+        db, cursor = db_connect()
 
         cursor.execute("""SELECT username, password, description
                         FROM example
@@ -47,10 +45,7 @@ class User(UserMixin):
 
 
 def verify_auth_token(token):
-    # Get access token from database and matching it with token
-    db = MySQLdb.connect(host='localhost', port=3306, 
-                        user='root', passwd='toor', db='test')
-    cursor = db.cursor()
+    db, cursor = db_connect()
 
     cursor.execute("""SELECT access_token
                     FROM tokens
@@ -120,10 +115,7 @@ def generate_token():
     access_token = access_token_serializer.dumps(d_access)
     secret_token = secret_token_serializer.dumps(d_secret)
 
-    # INSERT username, access_token and secret token to database
-    db = MySQLdb.connect(host='localhost', port=3306, 
-                    user='root', passwd='toor', db='test')
-    cursor = db.cursor()
+    db, cursor = db_connect()
 
     cursor.execute("""INSERT INTO tokens (username, access_token, secret_token)
                     VALUES ('%s', '%s', '%s')""" % 

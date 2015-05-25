@@ -1,17 +1,32 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 import MySQLdb
 import MySQLdb.cursors
 
-class Database(object):
-	def __init__(self):
-		self.host = "localhost"
-		self.port = 3306
-		self.user = "root"
-		self.passwd = "toor"
-		self.db = "test"
 
-	def connect(self):
-		conn = MySQLdb.connect(host='localhost', port=3306, 
-                    user='root', passwd='toor', db='test')
-		cursor = conn.cursor()
-		
-		return conn, cursor
+def connect():
+	host = "localhost"
+	port = 3306
+	user = "root"
+	# passwd = "toor"
+	db = "flask_tasks"
+
+	# conn = MySQLdb.connect(host=host, port=port, 
+	# 					user=user, passwd=passwd, db=db)
+	conn = MySQLdb.connect(host=host, port=port, 
+						user=user, db=db, 
+						cursorclass=MySQLdb.cursors.DictCursor)
+	cursor = conn.cursor()
+	
+	return conn, cursor
+
+
+def close():
+	MySQLdb.close()
+
+
+def catch_error():
+	# Handle error
+	return MySQLdb.Error

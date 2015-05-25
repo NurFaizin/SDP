@@ -1,6 +1,7 @@
-CREATE DATABASE flask_tasks;
-USE flask_task;
+CREATE DATABASE IF NOT EXISTS flask_tasks;
+USE flask_tasks;
 
+DROP TABLE IF EXISTS users;
 CREATE TABLE users ( 
 	id int(11) unsigned NOT NULL AUTO_INCREMENT, 
 	username varchar(100) DEFAULT NULL, 
@@ -10,6 +11,7 @@ CREATE TABLE users (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks ( 
 	id int(11) unsigned NOT NULL AUTO_INCREMENT,
 	user_id int(11) unsigned DEFAULT NULL,
@@ -20,6 +22,8 @@ CREATE TABLE tasks (
 	PRIMARY KEY(id) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+DROP TABLE IF EXISTS tokens;
 CREATE TABLE tokens ( 
 	id int(11) unsigned NOT NULL AUTO_INCREMENT,
 	user_id int(11) unsigned DEFAULT NULL,
