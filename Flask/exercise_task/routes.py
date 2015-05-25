@@ -25,20 +25,25 @@ def index():
 @blueprint.route("/login", methods=["POST"])
 @login_required
 def login():
-    access_token, secret_token = users.generate_token()
-    data = {
+	"""Route for user login"""
+
+	# Generate tokens
+	access_token, secret_token = users.generate_token()
+	data = {
                 'status': 200,
                 'message': "Login success!",
                 'data': 'Hello, %s!' % g.user.username,
                 'secret_token': secret_token,
                 'access_token': access_token
             }
-    return jsonify(data)
+	return jsonify(data)
 
 
 @blueprint.route('/logout', methods=['POST'])
 @login_required
 def logout():
+	"""Route for user logout"""
+
 	resp_data = {}
 	if users.logout():
 		resp_data = {
@@ -196,7 +201,7 @@ def create_task():
 
 	# Get form data
 	task_data = {
-		'user_id': request.form.get('user_id'),
+		'user_id': g.user.id,
 		'description': request.form.get('description'),
 		'due_date': request.form.get('due_date'),
 		'priority': request.form.get('priority')

@@ -15,55 +15,68 @@ from itsdangerous import (
 
 
 class User(UserMixin):
-	"""docstring for User"""
+    """docstring for User"""
 
 
-	def __init__(self, id, username, password, email):
-		self.id = id
-		self.username = username
-		self.password = password
-		self.email = email
+    def __init__(self, id, username, password, email):
+        self.id = id
+        self.username = username
+        self.password = password
+        self.email = email
 
-	
-	@classmethod
-	def get(cls, username):
-		db, cursor = connect()
+    
+    @classmethod
+    def get(cls, username):
 
-		cursor.execute("""SELECT id, username, password, email
-		                FROM users
-		                WHERE username='%s'""" % username)
+        # Open connection and execute SQL to create new user
+        try:
+            db, cursor = connect()
 
-		user_data = cursor.fetchone()
+            cursor.execute("""SELECT id, username, password, email
+                            FROM users
+                            WHERE username='%s'""" % username)
 
-		if user_data:
-			return (user_data['id'], user_data['username'], 
-					user_data['password'], user_data['email'])
+            user_data = cursor.fetchone()
 
-		return None
+        # Get error messages
+        except catch_error(), e:
+            print "Error %d: %s" % (e.args[0],e.args[1])
+
+
+        # Close connection
+        finally:
+            if db:
+                db.close()
+
+        if user_data:
+            return (user_data['id'], user_data['username'], 
+                    user_data['password'], user_data['email'])
+
+        return None
 
 
 @login_manager.request_loader
 def load_user(request):
 
-	access_token = request.args.get('access_token') \
-					or request.form.get('access_token')
-	username = request.form.get('username')
-	password = request.form.get('password')
+    access_token = request.args.get('access_token') \
+                    or request.form.get('access_token')
+    username = request.form.get('username')
+    password = request.form.get('password')
 
-	user = verify_auth_token(access_token)
+    user = verify_auth_token(access_token)
 
-	if not user:
-		user_entry = User.get(username)
+    if not user:
+        user_entry = User.get(username)
 
-		if (user_entry is not None):
-			user = User(user_entry[0], user_entry[1], 
-					user_entry[2], user_entry[3])
+        if (user_entry is not None):
+            user = User(user_entry[0], user_entry[1], 
+                    user_entry[2], user_entry[3])
 
-			if user.password != password:
-				return None
-	
-	g.user = user
-	return user
+            if user.password != password:
+                return None
+    
+    g.user = user
+    return user
 
 
 def generate_token():
@@ -88,24 +101,50 @@ def generate_token():
     access_token = access_token_serializer.dumps(d_access)
     secret_token = secret_token_serializer.dumps(d_secret)
 
-    db, cursor = connect()
+    # Open connection and execute SQL to create new user
+    try:
+        db, cursor = connect()
 
-    cursor.execute("""INSERT INTO tokens (user_id, access_token, secret_token)
-                    VALUES ('%s', '%s', '%s')""" % 
-                    (g.user.id, access_token, secret_token)
-                )
-    db.commit()
+        cursor.execute("""INSERT INTO tokens (user_id, access_token, secret_token)
+                        VALUES ('%s', '%s', '%s')""" % 
+                        (g.user.id, access_token, secret_token)
+                    )
+        db.commit()
+
+    # Get error messages
+    except catch_error(), e:
+        print "Error %d: %s" % (e.args[0],e.args[1])
+
+
+    # Close connection
+    finally:
+        if db:
+            db.close()
 
     return access_token, secret_token
 
 
 def verify_auth_token(token):
-    db, cursor = connect()
+    """Verify auth/access token"""
 
-    cursor.execute("""SELECT access_token
-                    FROM tokens
-                    WHERE access_token='%s'""" % token)
-    access_token = cursor.fetchone()
+    # Open connection and execute SQL to create new user
+    try:
+        db, cursor = connect()
+
+        cursor.execute("""SELECT access_token
+                        FROM tokens
+                        WHERE access_token='%s'""" % token)
+        access_token = cursor.fetchone()
+
+    # Get error messages
+    except catch_error(), e:
+        print "Error %d: %s" % (e.args[0],e.args[1])
+
+
+    # Close connection
+    finally:
+        if db:
+            db.close()
 
     # If access token match with token
     if access_token:
@@ -122,7 +161,7 @@ def verify_auth_token(token):
 
             if (user_entry is not None):
                 user = User(user_entry[0], user_entry[1], 
-                		user_entry[2], user_entry[3])
+                        user_entry[2], user_entry[3])
 
                 if (user.password == data['password']):
                     g.user = user
@@ -132,6 +171,8 @@ def verify_auth_token(token):
 
 
 def verify_auth_secret_token(token):
+    """Verify auth secret token"""
+
     s = JSONWebSignatureSerializer(app.config['SECRET_KEY'])
     try:
         data = s.loads(token)
@@ -145,7 +186,7 @@ def verify_auth_secret_token(token):
 
         if (user_entry is not None):
             user = User(user_entry[0], user_entry[1], 
-            		user_entry[2], user_entry[3])
+                    user_entry[2], user_entry[3])
 
             if (user.password == data['password']):
                 g.user = user
@@ -155,62 +196,62 @@ def verify_auth_secret_token(token):
 
 
 def create_user(user_data):
-	"""Create new user (register)"""
+    """Create new user (register)"""
 
-	username = user_data["username"]
-	password = user_data["password"]
-	email = user_data["email"]
+    username = user_data["username"]
+    password = user_data["password"]
+    email = user_data["email"]
 
-	# Open connection and execute SQL to create new user
-	try:
-		db, cursor = connect()
-		
-		cursor.execute("""INSERT INTO users
-						(username, password, email)
-						VALUES (%s, %s, %s)
-						""",
-						(username, password, email)
-					)
+    # Open connection and execute SQL to create new user
+    try:
+        db, cursor = connect()
+        
+        cursor.execute("""INSERT INTO users
+                        (username, password, email)
+                        VALUES (%s, %s, %s)
+                        """,
+                        (username, password, email)
+                    )
 
-		db.commit()
-		return cursor.lastrowid
+        db.commit()
+        return cursor.lastrowid
 
-	# Get error messages
-	except catch_error(), e:
-		print "Error %d: %s" % (e.args[0],e.args[1])
+    # Get error messages
+    except catch_error(), e:
+        print "Error %d: %s" % (e.args[0],e.args[1])
 
 
-	# Close connection
-	finally:
-		if db:
-			db.close()
+    # Close connection
+    finally:
+        if db:
+            db.close()
 
-	return None
+    return None
 
 
 def logout():
-	"""Logout user (delete token)"""
+    """Logout user (delete token)"""
 
-	# Open connection and execute SQL to create new user
-	try:
-		db, cursor = connect()
-		
-		cursor.execute("""DELETE FROM tokens
-						WHERE user_id=%s
-						""" % g.user.id
-					)
+    # Open connection and execute SQL to create new user
+    try:
+        db, cursor = connect()
+        
+        cursor.execute("""DELETE FROM tokens
+                        WHERE user_id=%s
+                        """ % g.user.id
+                    )
 
-		db.commit()
-		return g.user.id
+        db.commit()
+        return g.user.id
 
-	# Get error messages
-	except catch_error(), e:
-		print "Error %d: %s" % (e.args[0],e.args[1])
+    # Get error messages
+    except catch_error(), e:
+        print "Error %d: %s" % (e.args[0],e.args[1])
 
 
-	# Close connection
-	finally:
-		if db:
-			db.close()
+    # Close connection
+    finally:
+        if db:
+            db.close()
 
-	return None
+    return None
